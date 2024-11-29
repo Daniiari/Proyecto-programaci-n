@@ -172,12 +172,6 @@ def crear_personaje():
     tk.Label(frame_atributos, text="Atributos:", font=("Arial", 10, "bold")).pack(anchor="w")
     puntos_disponibles = 10
     atributos = atributos_por_raza[raza_var.get()].copy()
-    
-    def actualizar_atributos_por_raza(*args):
-        nonlocal atributos, puntos_disponibles
-        atributos = atributos_por_raza[raza_var.get()].copy()
-        puntos_disponibles = 10
-        actualizar_labels()
 
     def actualizar_labels():
         label_fuerza.config(text=f"Fuerza: {atributos['Fuerza']}")
