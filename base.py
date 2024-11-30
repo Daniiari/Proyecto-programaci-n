@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 from PIL import Image, ImageTk
 import sqlite3
-import database
+import database  # Asegúrate de que este módulo esté correctamente implementado
 
 # Clase para representar un personaje
 class Personaje:
@@ -164,7 +164,6 @@ def crear_personaje():
     genero_var.trace("w", actualizar_pixelart)
     color_piel_var.trace("w", actualizar_pixelart)
     version_var.trace("w", actualizar_pixelart)
-
     actualizar_pixelart()
 
     frame_atributos = ttk.Frame(ventana, padding=5)
@@ -172,6 +171,13 @@ def crear_personaje():
     tk.Label(frame_atributos, text="Atributos:", font=("Arial", 10, "bold")).pack(anchor="w")
     puntos_disponibles = 10
     atributos = atributos_por_raza[raza_var.get()].copy()
+    
+    def actualizar_atributos_por_raza(*args):
+        nonlocal atributos
+        atributos = atributos_por_raza[raza_var.get()].copy()
+        actualizar_labels()
+        
+    raza_var.trace("w", actualizar_atributos_por_raza)
 
     def actualizar_labels():
         label_fuerza.config(text=f"Fuerza: {atributos['Fuerza']}")
